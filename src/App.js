@@ -1,9 +1,11 @@
-import logo from './logo.svg';
 import './App.scss';
-import { Button } from '@material-ui/core';
 import axios from 'axios';
 
-function asd() {
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import ToDoList from './containers/ToDoList/ToDoList';
+import { Suspense } from 'react';
+
+/* function asd() {
   axios
     .get('http://localhost:8080/todo')
     .then((res) => {
@@ -13,22 +15,15 @@ function asd() {
       console.error(error);
     });
 }
-
+ */
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-      <Button onClick={() => asd()}>call</Button>
-    </div>
+  let routes = (
+    <Switch>
+      <Route path="/" exact component={ToDoList}></Route>
+      <Redirect to="/" />
+    </Switch>
   );
+  return <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>;
 }
 
-export default App;
+export default withRouter(App);
