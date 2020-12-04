@@ -35,10 +35,13 @@ const addToDoDialog = (props) => (
         />
       </MuiPickersUtilsProvider>
     </div>
-    <Button classes={{ root: 'add-to-do-button' }} onClick={props.handleAddToDo}>
+    <Button
+      classes={{ root: 'add-to-do-button' }}
+      onClick={props.handleAddToDo}
+      disabled={!props.toDoMessage}
+    >
       Add
     </Button>
   </Dialog>
 );
-
 export default addToDoDialog;

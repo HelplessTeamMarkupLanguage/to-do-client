@@ -42,22 +42,24 @@ const ToDoList = (props) => {
       .then(() => {
         setIsChanged(!isChanged);
       })
-      .catch((error) => console.log('valamiba', error));
+      .catch((error) => console.log('valami hiba', error));
   };
 
-  const handleFinishToDo = (id) => {
+  const handleFinishToDo = (id, isFinished) => {
     console.log(toDoList);
     const toDo = {
-      isFinished: true,
+      isFinished: !isFinished,
     };
     axios
       .put('/todo/' + id, toDo)
-      .then()
-      .catch((error) => console.log('valam iba', error));
+      .then((toDoList.find((todo) => todo._id === id).isFinished = !isFinished))
+      .catch((error) => console.log('valami hiba', error));
   };
 
   const handleAddToDo = () => {
+    console.log(selectedDate);
     const toDo = {
+      date: selectedDate ? selectedDate : new Date(),
       isFinished: false,
       text: toDoMessage,
     };
@@ -69,7 +71,7 @@ const ToDoList = (props) => {
         setIsLoading(true);
         cleanDialog();
       })
-      .catch((error) => console.log('valam iba', error));
+      .catch((error) => console.log('valami hiba', error));
   };
 
   const handleOpenDialog = () => {
@@ -100,9 +102,10 @@ const ToDoList = (props) => {
   } else {
     toDos = toDoList.map((todo) => (
       <ToDoCard
+        key={todo._id}
         text={todo.text}
         handleDeleteToDo={() => handleDeleteToDo(todo._id)}
-        handleFinishToDo={() => handleFinishToDo(todo._id)}
+        handleFinishToDo={() => handleFinishToDo(todo._id, todo.isFinished)}
       />
     ));
   }
