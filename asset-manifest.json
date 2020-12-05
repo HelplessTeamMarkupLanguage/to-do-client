@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/HelplessTeamMarkupLanguage/to-do-client/static/css/main.88d89363.chunk.css",
-    "main.js": "/HelplessTeamMarkupLanguage/to-do-client/static/js/main.1811b00d.chunk.js",
-    "main.js.map": "/HelplessTeamMarkupLanguage/to-do-client/static/js/main.1811b00d.chunk.js.map",
-    "runtime-main.js": "/HelplessTeamMarkupLanguage/to-do-client/static/js/runtime-main.319161fb.js",
-    "runtime-main.js.map": "/HelplessTeamMarkupLanguage/to-do-client/static/js/runtime-main.319161fb.js.map",
-    "static/js/2.d82806fd.chunk.js": "/HelplessTeamMarkupLanguage/to-do-client/static/js/2.d82806fd.chunk.js",
-    "static/js/2.d82806fd.chunk.js.map": "/HelplessTeamMarkupLanguage/to-do-client/static/js/2.d82806fd.chunk.js.map",
-    "static/js/3.6f28f454.chunk.js": "/HelplessTeamMarkupLanguage/to-do-client/static/js/3.6f28f454.chunk.js",
-    "static/js/3.6f28f454.chunk.js.map": "/HelplessTeamMarkupLanguage/to-do-client/static/js/3.6f28f454.chunk.js.map",
-    "index.html": "/HelplessTeamMarkupLanguage/to-do-client/index.html",
-    "static/css/main.88d89363.chunk.css.map": "/HelplessTeamMarkupLanguage/to-do-client/static/css/main.88d89363.chunk.css.map",
-    "static/js/2.d82806fd.chunk.js.LICENSE.txt": "/HelplessTeamMarkupLanguage/to-do-client/static/js/2.d82806fd.chunk.js.LICENSE.txt"
+    "main.css": "/to-do-client/static/css/main.88d89363.chunk.css",
+    "main.js": "/to-do-client/static/js/main.1811b00d.chunk.js",
+    "main.js.map": "/to-do-client/static/js/main.1811b00d.chunk.js.map",
+    "runtime-main.js": "/to-do-client/static/js/runtime-main.8c1913d2.js",
+    "runtime-main.js.map": "/to-do-client/static/js/runtime-main.8c1913d2.js.map",
+    "static/js/2.d82806fd.chunk.js": "/to-do-client/static/js/2.d82806fd.chunk.js",
+    "static/js/2.d82806fd.chunk.js.map": "/to-do-client/static/js/2.d82806fd.chunk.js.map",
+    "static/js/3.6f28f454.chunk.js": "/to-do-client/static/js/3.6f28f454.chunk.js",
+    "static/js/3.6f28f454.chunk.js.map": "/to-do-client/static/js/3.6f28f454.chunk.js.map",
+    "index.html": "/to-do-client/index.html",
+    "static/css/main.88d89363.chunk.css.map": "/to-do-client/static/css/main.88d89363.chunk.css.map",
+    "static/js/2.d82806fd.chunk.js.LICENSE.txt": "/to-do-client/static/js/2.d82806fd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.319161fb.js",
+    "static/js/runtime-main.8c1913d2.js",
     "static/js/2.d82806fd.chunk.js",
     "static/css/main.88d89363.chunk.css",
     "static/js/main.1811b00d.chunk.js"
