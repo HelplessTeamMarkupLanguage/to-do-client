@@ -1,6 +1,6 @@
 # to-do-client
 
-The frontend side of the to-do app
+The frontend side of the to-do app, application hosted on https://helplessteammarkuplanguage.github.io/to-do-client
 
 # Getting Started with Create React App
 
