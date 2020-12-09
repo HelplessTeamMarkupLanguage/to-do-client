@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogTitle, IconButton, TextField } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, IconButton, makeStyles, TextField } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
@@ -8,7 +8,7 @@ import './AddToDoDialog.scss';
 const addToDoDialog = (props) => (
   <Dialog open={props.open} onClose={props.handleCloseDialog} classes={{ paper: 'add-to-do-dialog' }}>
     <div className="add-to-do-dialog-header">
-      <DialogTitle className="add-to-do-dialog-main-color">Add New To Do</DialogTitle>
+      <DialogTitle color="primary">Add New To Do</DialogTitle>
       <IconButton onClick={props.handleCloseDialog}>
         <Close color="primary" />
       </IconButton>
@@ -22,6 +22,7 @@ const addToDoDialog = (props) => (
         onChange={props.handleToDoMessageChange}
         rowsMax={2}
         classes={{ root: 'add-to-do-message-input' }}
+        InputLabelProps={{ className: 'test' }}
       />
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
@@ -35,7 +36,12 @@ const addToDoDialog = (props) => (
         />
       </MuiPickersUtilsProvider>
     </div>
-    <Button classes={{ root: 'add-to-do-button' }} onClick={props.handleAddToDo} disabled={!props.toDoMessage}>
+    <Button
+      color="secondary"
+      classes={{ root: 'add-to-do-button' }}
+      onClick={props.handleAddToDo}
+      disabled={!props.toDoMessage}
+    >
       Add
     </Button>
   </Dialog>

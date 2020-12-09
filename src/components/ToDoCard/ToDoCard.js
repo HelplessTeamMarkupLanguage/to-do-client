@@ -8,10 +8,10 @@ const toDoCard = (props) => (
     <h3>{props.text} </h3>
     <div className="todo-card-buttons">
       <IconButton onClick={props.handleFinishToDo}>
-        <Check />
+        <Check color="secondary" />
       </IconButton>
       <IconButton onClick={props.handleDeleteToDo}>
-        <Delete />
+        <Delete color="secondary" />
       </IconButton>
     </div>
   </Card>
