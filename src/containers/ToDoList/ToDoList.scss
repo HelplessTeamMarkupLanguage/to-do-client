@@ -3,45 +3,25 @@
 .todo-list-page {
   box-sizing: border-box;
   padding: 16px;
-  height: 100vh;
   display: flex;
   flex-flow: column;
 }
 
 .todo-list-header {
-  margin: 10% 0;
+  top: 2%;
+  margin-bottom: 3em;
   text-align: center;
   color: $mainColor !important;
 }
 
-.todo-list {
-  margin-top: 20%;
-  height: fit-content;
-  justify-content: center;
-  height: 60%;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 .todo-fab {
-  margin: auto !important;
-  background-color: $mainColor !important;
-  color: $secondaryColor !important;
+  position: fixed !important;
+  bottom: 5% !important;
+  right: 16px !important;
 }
 
-@media only screen and (min-width: 1024px) {
-  .todo-list {
-    margin-top: 2%;
-    height: 100%;
-  }
-  .todo-list-header {
-    margin: 2% 0;
-  }
-
+@media (max-width: 576px) {
   .todo-fab {
-    position: absolute !important;
-    bottom: 5% !important;
-    right: 16px !important;
+    bottom: 15% !important;
   }
 }

@@ -21,7 +21,7 @@
 }
 .spinner {
   color: $secondaryColor;
-  font-size: 5px;
+  font-size: 7px;
   text-indent: -99999em;
   margin: 15px auto;
   position: relative;
@@ -82,7 +82,14 @@
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
+  .spinner-holder {
+    width: 60%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
   .spinner-holder {
     width: 30%;
     margin: auto;

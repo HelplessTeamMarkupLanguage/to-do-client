@@ -28,6 +28,8 @@ const ToDoList = (props) => {
       })
       .catch((error) => {
         console.error(error);
+        console.log('asd');
+        console.log('asdasd');
       });
   };
 
@@ -111,9 +113,9 @@ const ToDoList = (props) => {
   }
 
   return (
-    <div className="todo-list-page">
+    <div className="todo-list-page" id="todo-list-page1">
       <h1 className="todo-list-header"> All Tasks</h1>
-      <div className="todo-list">{toDos}</div>
+      {toDos}
       <Fab classes={{ root: 'todo-fab' }} onClick={handleOpenDialog}>
         <Add />
       </Fab>

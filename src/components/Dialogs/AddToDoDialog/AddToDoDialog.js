@@ -10,7 +10,7 @@ const addToDoDialog = (props) => (
     <div className="add-to-do-dialog-header">
       <DialogTitle className="add-to-do-dialog-main-color">Add New To Do</DialogTitle>
       <IconButton onClick={props.handleCloseDialog}>
-        <Close classes={{ root: 'add-to-do-dialog-main-color' }} />
+        <Close color="primary" />
       </IconButton>
     </div>
     <div className="add-to-do-dialog-inputs">
@@ -35,11 +35,7 @@ const addToDoDialog = (props) => (
         />
       </MuiPickersUtilsProvider>
     </div>
-    <Button
-      classes={{ root: 'add-to-do-button' }}
-      onClick={props.handleAddToDo}
-      disabled={!props.toDoMessage}
-    >
+    <Button classes={{ root: 'add-to-do-button' }} onClick={props.handleAddToDo} disabled={!props.toDoMessage}>
       Add
     </Button>
   </Dialog>
