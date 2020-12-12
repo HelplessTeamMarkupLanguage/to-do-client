@@ -98,7 +98,7 @@ const ToDoList = (props) => {
   };
 
   if (isLoading === true) {
-    toDos = <LoadingSpinner />;
+    toDos = <LoadingSpinner text="Your ToDos Are On The Way" />;
   } else if (isLoading === false && toDoList.length === 0) {
     toDos = <NoDataFound />;
   } else {

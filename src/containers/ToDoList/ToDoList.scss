@@ -19,9 +19,10 @@
   bottom: 5% !important;
   right: 16px !important;
   background-color: #f0810f !important;
+  color: $secondaryColor !important;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   .todo-fab {
     bottom: 15% !important;
   }
