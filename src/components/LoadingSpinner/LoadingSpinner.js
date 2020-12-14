@@ -4,7 +4,7 @@ import './LoadingSpinner.scss';
 
 const loadingSpinner = (props) => (
   <Card classes={{ root: 'spinner-holder' }}>
-    <h1>Your ToDos Are On The Way</h1>
+    <h1>{props.text}</h1>
     <div className="spinner">Loading...</div>
   </Card>
 );
