@@ -4,18 +4,8 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#274e6c',
-    },
-    secondary: {
-      main: '#eeecdf',
-    },
-  },
-});
+import theme from './customTheme';
+import { MuiThemeProvider } from '@material-ui/core';
 
 ReactDOM.render(
   <React.StrictMode>

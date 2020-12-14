@@ -1,4 +1,3 @@
-import './App.scss';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import ToDoList from './containers/ToDoList/ToDoList';
 import { Suspense } from 'react';

@@ -12,12 +12,12 @@ const dialogStyle = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'colum',
     [theme.breakpoints.down('xs')]: {
-      height: 'max-content !important',
+      height: 'max-content',
       minWidth: '90%',
     },
-    [theme.breakpoints.up('xs')]: {
+    [theme.breakpoints.up('x')]: {
       minWidth: '25%',
-      height: 'max-content !important',
+      height: 'max-content',
     },
   },
   dialogHeader: {
@@ -41,25 +41,6 @@ const dialogStyle = makeStyles((theme) => ({
   datePicker: {
     width: '90%',
   },
-  primaryColor: {
-    color: '#274e6c',
-  },
-  underline: {
-    '&:before': {
-      borderBottomColor: '#274e6c',
-    },
-    '&:after': {
-      borderBottomColor: '#274e6c',
-    },
-    '&:hover:not($disabled):not($focused):not($error):before': {
-      borderBottomColor: '#274e6c !important',
-    },
-  },
-  datePickerIcon: {
-    '& .MuiButtonBase-root': {
-      color: '#274e6c',
-    },
-  },
 }));
 
 const addToDoDialog = (props) => {
@@ -68,7 +49,7 @@ const addToDoDialog = (props) => {
   return (
     <Dialog open={props.open} onClose={props.handleCloseDialog} classes={{ paper: classes.dialog }}>
       <div className={classes.dialogHeader}>
-        <DialogTitle classes={{ root: classes.primaryColor }}>Add New To Do</DialogTitle>
+        <DialogTitle>Add New To Do</DialogTitle>
         <IconButton onClick={props.handleCloseDialog}>
           <Close color="primary" />
         </IconButton>
@@ -83,8 +64,6 @@ const addToDoDialog = (props) => {
           value={props.toDoMessage}
           onChange={props.handleToDoMessageChange}
           rowsMax={2}
-          InputProps={{ classes: { underline: classes.underline, input: classes.primaryColor } }}
-          InputLabelProps={{ classes: { root: classes.primaryColor } }}
         />
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
@@ -95,11 +74,6 @@ const addToDoDialog = (props) => {
             value={props.selectedDate}
             onChange={props.handleDateChange}
             format="MM/dd/yyyy"
-            InputAdornmentProps={{ classes: { root: classes.datePickerIcon } }}
-            InputProps={{
-              classes: { underline: classes.underline, root: classes.primaryColor },
-            }}
-            InputLabelProps={{ classes: { root: classes.primaryColor } }}
           />
         </MuiPickersUtilsProvider>
       </div>

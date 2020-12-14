@@ -1,14 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import ToDoCard from '../../components/ToDoCard/ToDoCard';
-import './ToDoList.scss';
 import axios from '../../axios';
-import { Fab } from '@material-ui/core';
+import { Fab, makeStyles } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
-import AddToDoDialog from '../../components/Dialogs/AddToDoDialog/AddToDoDialog';
+import AddToDoDialog from '../../components/AddToDoDialog/AddToDoDialog';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import NoDataFound from '../../components/NoDataFound/NoDataFound';
 
+const toDoListStyle = makeStyles((theme) => ({
+  toDoList: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    flexFlow: 'column',
+    alignItems: 'center',
+  },
+  header: {
+    top: '2%',
+    marginBottom: '3em',
+    color: '#274e6c',
+    textAlign: 'center',
+  },
+  fabButton: {
+    position: 'fixed',
+    bottom: '5%',
+    right: theme.spacing(2),
+    backgroundColor: '#f0810f',
+    [theme.breakpoints.down('xs')]: {
+      bottom: '15%',
+    },
+  },
+}));
+
 const ToDoList = (props) => {
+  const classes = toDoListStyle();
   const [toDoList, setTodoList] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -23,6 +47,7 @@ const ToDoList = (props) => {
     await axios
       .get('/todo')
       .then((res) => {
+        console.log(res.data);
         setTodoList(res.data);
         setIsLoading(false);
       })
@@ -105,7 +130,7 @@ const ToDoList = (props) => {
     toDos = toDoList.map((todo) => (
       <ToDoCard
         key={todo._id}
-        text={todo.text}
+        text={todo.message}
         handleDeleteToDo={() => handleDeleteToDo(todo._id)}
         handleFinishToDo={() => handleFinishToDo(todo._id, todo.isFinished)}
       />
@@ -113,10 +138,10 @@ const ToDoList = (props) => {
   }
 
   return (
-    <div className="todo-list-page" id="todo-list-page1">
-      <h1 className="todo-list-header"> All Tasks</h1>
+    <div className={classes.toDoList}>
+      <h1 className={classes.header}>All Tasks</h1>
       {toDos}
-      <Fab classes={{ root: 'todo-fab' }} onClick={handleOpenDialog}>
+      <Fab color="primary" classes={{ root: classes.fabButton }} onClick={handleOpenDialog}>
         <Add />
       </Fab>
       <AddToDoDialog
