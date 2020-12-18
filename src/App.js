@@ -3,16 +3,16 @@ import ToDoList from './containers/ToDoList/ToDoList';
 import { Suspense } from 'react';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import LoginPage from './containers/LoginPage/LoginPage';
+import RegistrationPage from './containers/RegistrationPage/RegistrationPage';
 
 function App() {
   let routes = (
-    <>
-      <LoginPage />
-      <Switch>
-        <Route path="/" exact component={ToDoList}></Route>
-        <Redirect to="/" />
-      </Switch>
-    </>
+    <Switch>
+      <Route path="/registration" component={RegistrationPage} />
+      <Route path="/login" component={LoginPage} />
+      <Route path="/" exact component={ToDoList} />
+      <Redirect to="/" />
+    </Switch>
   );
   return (
     <Suspense
