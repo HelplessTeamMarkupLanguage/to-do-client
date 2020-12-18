@@ -2,13 +2,17 @@ import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import ToDoList from './containers/ToDoList/ToDoList';
 import { Suspense } from 'react';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+import LoginPage from './containers/LoginPage/LoginPage';
 
 function App() {
   let routes = (
-    <Switch>
-      <Route path="/" exact component={ToDoList}></Route>
-      <Redirect to="/" />
-    </Switch>
+    <>
+      <LoginPage />
+      <Switch>
+        <Route path="/" exact component={ToDoList}></Route>
+        <Redirect to="/" />
+      </Switch>
+    </>
   );
   return (
     <Suspense
