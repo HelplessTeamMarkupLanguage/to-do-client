@@ -1,13 +1,11 @@
-@import '../../variables.scss';
-
 .spinner-holder {
-  background-color: $mainColor !important;
+  background-color: #274e6c !important;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 5px;
 
   h1 {
-    color: $secondaryColor;
+    color: #eeecdf;
     font-size: 18px;
     text-align: center;
     margin-bottom: 20px;
@@ -20,8 +18,8 @@
   border-radius: 50%;
 }
 .spinner {
-  color: $secondaryColor;
-  font-size: 5px;
+  color: #eeecdf;
+  font-size: 7px;
   text-indent: -99999em;
   margin: 15px auto;
   position: relative;
@@ -40,7 +38,7 @@
 .spinner:before {
   width: 4.5em;
   height: 10.2em;
-  background: $mainColor;
+  background: #274e6c;
   border-radius: 10.2em 0 0 10.2em;
   top: -0.1em;
   left: -0.1em;
@@ -52,7 +50,7 @@
 .spinner:after {
   width: 5.2em;
   height: 10.2em;
-  background: $mainColor;
+  background: #274e6c;
   border-radius: 0 10.2em 10.2em 0;
   top: -0.1em;
   left: 5.1em;
@@ -82,7 +80,14 @@
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
+  .spinner-holder {
+    width: 60%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
   .spinner-holder {
     width: 30%;
     margin: auto;

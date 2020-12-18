@@ -1,8 +1,11 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-const protectedRoute = ({ isAuth, component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (isAuth ? <Component {...props} /> : <Redirect to="/" />)} />
+const protectedRoute = ({ token, component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) => (token !== null && token !== '' ? <Component {...props} /> : <Redirect to="/" />)}
+  />
 );
 
 export default protectedRoute;
