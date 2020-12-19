@@ -15,7 +15,7 @@ const dialogStyle = makeStyles((theme) => ({
       height: 'max-content',
       minWidth: '90%',
     },
-    [theme.breakpoints.up('x')]: {
+    [theme.breakpoints.up('xs')]: {
       minWidth: '25%',
       height: 'max-content',
     },

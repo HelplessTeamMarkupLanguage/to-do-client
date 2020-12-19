@@ -13,14 +13,14 @@ const registrationStyle = makeStyles((theme) => ({
   },
   card: {
     margin: 'auto',
-    maxWidth: '40%',
     [theme.breakpoints.down('xs')]: {
-      height: 'max-content',
       minWidth: '90%',
     },
-    [theme.breakpoints.up('x')]: {
-      minWidth: '25%',
-      height: 'max-content',
+    [theme.breakpoints.up('xs')]: {
+      maxWidth: '50%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: '25%',
     },
     padding: theme.spacing(2),
     boxSizing: 'border-box',

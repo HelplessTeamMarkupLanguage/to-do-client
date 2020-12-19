@@ -1,17 +1,30 @@
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
-import ToDoList from './containers/ToDoList/ToDoList';
+import React from 'react';
 import { Suspense } from 'react';
+import ProtectedRoute from './hoc/ProtectedRouter';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
-import LoginPage from './containers/LoginPage/LoginPage';
-import RegistrationPage from './containers/RegistrationPage/RegistrationPage';
+
+const ToDoList = React.lazy(() => {
+  return import('./containers/ToDoList/ToDoList');
+});
+
+const LoginPage = React.lazy(() => {
+  return import('./containers/LoginPage/LoginPage');
+});
+
+const RegistrationPage = React.lazy(() => {
+  return import('./containers/RegistrationPage/RegistrationPage');
+});
 
 function App() {
+  const token = localStorage.getItem('token');
+
   let routes = (
     <Switch>
-      <Route path="/registration" component={RegistrationPage} />
-      <Route path="/login" component={LoginPage} />
-      <Route path="/" exact component={ToDoList} />
-      <Redirect to="/" />
+      <ProtectedRoute path="/todos" exact component={ToDoList} token={token} />
+      <Route path="/registration" exact component={RegistrationPage} />
+      <Route path="/login" exact component={LoginPage} />
+      {token !== null && token !== '' ? <Redirect to="/todos" /> : <Redirect to="/login" />}
     </Switch>
   );
   return (

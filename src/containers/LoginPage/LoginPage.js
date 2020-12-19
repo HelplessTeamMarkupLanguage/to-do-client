@@ -41,7 +41,10 @@ export default function LoginPage(props) {
   const submitLogin = async () => {
     await axios
       .post('/user/login', { username, password })
-      .then((res) => localStorage.setItem('token', res.data.token))
+      .then((res) => {
+        localStorage.setItem('token', res.data.token);
+        props.history.push('/todos');
+      })
       .catch((err) => {
         console.error(err);
         setSnackBarOpen(true);
