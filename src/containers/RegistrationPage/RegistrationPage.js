@@ -68,10 +68,6 @@ const registrationPage = (props) => {
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [snackBarMessage, setSneckBarMessage] = useState('');
 
-  /* const onSubmit = async (username, password) => {
-   
-  }; */
-
   const handleResetAllInputFields = () => {
     setUsername('');
     setPassword('');
@@ -83,14 +79,15 @@ const registrationPage = (props) => {
   const onSubmit = async (data) => {
     const username = data.username;
     const password = data.password;
-
     await axios
       .post('/user/signin', { username, password })
       .then((res) => {
         console.log(res);
         setSneckBarMessage('Successful Registration');
         setSnackBarOpen(true);
-        handleResetAllInputFields();
+        setTimeout(() => {
+          props.history.push('/login');
+        }, 1500);
       })
       .catch((err) => {
         setSneckBarMessage('Registration Failed');
@@ -169,8 +166,10 @@ const registrationPage = (props) => {
           horizontal: 'center',
         }}
         open={snackBarOpen}
-        autoHideDuration={3000}
-        onClose={() => setSnackBarOpen(false)}
+        autoHideDuration={1500}
+        onClose={() => {
+          setSnackBarOpen(false);
+        }}
         message={snackBarMessage}
       />
     </>

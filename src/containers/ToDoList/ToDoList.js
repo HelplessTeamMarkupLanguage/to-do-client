@@ -24,7 +24,7 @@ const toDoListStyle = makeStyles((theme) => ({
     position: 'fixed',
     bottom: '5%',
     right: theme.spacing(2),
-    backgroundColor: '#f0810f',
+    backgroundColor: '#de7a22',
     [theme.breakpoints.down('xs')]: {
       bottom: '15%',
     },

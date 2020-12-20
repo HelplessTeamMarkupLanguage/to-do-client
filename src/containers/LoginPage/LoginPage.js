@@ -1,6 +1,7 @@
 import { Button, Card, makeStyles, Snackbar, TextField } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from '../../axios';
 
 const loginStyle = makeStyles((theme) => ({
@@ -14,6 +15,8 @@ const loginStyle = makeStyles((theme) => ({
     maxWidth: 500,
     margin: theme.spacing(2),
     [theme.breakpoints.up(550)]: { margin: 'auto', marginTop: theme.spacing(2) },
+    display: 'flex',
+    flexDirection: 'column',
   },
   textField: {
     width: '90%',
@@ -29,6 +32,25 @@ const loginStyle = makeStyles((theme) => ({
   clearButton: {
     float: 'right',
     margin: theme.spacing(1),
+  },
+  buttonHolder: {
+    marginTop: 20,
+    width: '100%',
+  },
+  registration: {
+    width: '100%',
+    position: 'static',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 50,
+    color: '#274e6c',
+    '& a': {
+      color: '#de7a22',
+      textDecoration: 'none',
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
+    },
   },
 }));
 
@@ -68,26 +90,32 @@ export default function LoginPage(props) {
           label="Password"
           type="password"
         ></TextField>
-        <Button
-          className={classes.submitButton}
-          variant="contained"
-          color="primary"
-          onClick={() => submitLogin()}
-          disabled={username.length < 1 || password.length < 6}
-        >
-          Submit
-        </Button>
-        <Button
-          className={classes.clearButton}
-          variant="outlined"
-          color="primary"
-          onClick={() => {
-            setUsername('');
-            setPassword('');
-          }}
-        >
-          Clear
-        </Button>
+        <div className={classes.buttonHolder}>
+          <Button
+            className={classes.submitButton}
+            variant="contained"
+            color="primary"
+            onClick={() => submitLogin()}
+            disabled={username.length < 1 || password.length < 6}
+          >
+            Submit
+          </Button>
+          <Button
+            className={classes.clearButton}
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              setUsername('');
+              setPassword('');
+            }}
+          >
+            Clear
+          </Button>
+        </div>
+
+        <h4 className={classes.registration}>
+          New Member? <NavLink to="/registration">Register here</NavLink>
+        </h4>
       </Card>
       <Snackbar
         anchorOrigin={{
