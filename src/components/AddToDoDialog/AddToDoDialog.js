@@ -56,7 +56,6 @@ const addToDoDialog = (props) => {
       </div>
       <div>
         <TextField
-          onInvalid={false}
           className={classes.message}
           id="standard-basic"
           label="ToDo"

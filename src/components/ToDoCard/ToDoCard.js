@@ -1,10 +1,12 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Card, IconButton, makeStyles } from '@material-ui/core';
-import { Check, Delete } from '@material-ui/icons';
-import React from 'react';
+import { Check, Delete, Replay } from '@material-ui/icons';
+import React, { useState } from 'react';
 
 const toDoCardStyle = makeStyles((theme) => ({
   card: {
-    backgroundColor: '#274e6c',
+    position: 'relative',
+    backgroundColor: (props) => (!props.isFinished ? '#274e6c' : '#79a9ce'),
     color: '#eeecdf',
     height: 'min-content',
     padding: '10px',
@@ -14,14 +16,20 @@ const toDoCardStyle = makeStyles((theme) => ({
     justifyContent: 'space-between',
     '& h3': {
       alignSelf: 'center',
+      width: '100%',
+      margin: '0 0 10px 0',
+      textDecoration: (props) => props.isFinished && ' line-through 2px #274e6c',
     },
     [theme.breakpoints.down('sm')]: {
       '& h3': {
-        margin: '10px 0',
+        fontSize: '16px',
       },
     },
     [theme.breakpoints.up('sm')]: {
       width: '80% ',
+      '& h3': {
+        fontSize: '18px',
+      },
     },
     [theme.breakpoints.up('lg')]: {
       width: '45% ',
@@ -33,16 +41,37 @@ const toDoCardStyle = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  mainSection: {
+    display: 'flex',
+    flexFlow: 'column',
+    maxWidth: '75%',
+    '& h4': {
+      margin: 0,
+      fontSize: 14,
+    },
+  },
 }));
 
 const toDoCard = (props) => {
-  const classes = toDoCardStyle();
+  const [isFinished, setIsFinished] = useState(props.isFinished);
+  let date = new Date(props.date);
+  date = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
+  const classes = toDoCardStyle({ isFinished });
   return (
     <Card classes={{ root: classes.card }}>
-      <h3>{props.text} </h3>
+      <div className={classes.mainSection}>
+        <h3>{props.text}</h3>
+        <h4>Due date: {date}</h4>
+      </div>
+
       <div className={classes.buttonsHolder}>
-        <IconButton onClick={props.handleFinishToDo}>
-          <Check color="secondary" />
+        <IconButton
+          onClick={() => {
+            props.handleFinishToDo();
+            setIsFinished(!isFinished);
+          }}
+        >
+          {isFinished ? <Replay color="secondary" /> : <Check color="secondary" />}
         </IconButton>
         <IconButton onClick={props.handleDeleteToDo}>
           <Delete color="secondary" />
