@@ -1,6 +1,7 @@
 import { Button, Card, makeStyles, Snackbar, TextField } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from '../../axios';
 
 const loginStyle = makeStyles((theme) => ({
@@ -88,6 +89,7 @@ export default function LoginPage(props) {
         >
           Clear
         </Button>
+        <NavLink to="/registration">test</NavLink>
       </Card>
       <Snackbar
         anchorOrigin={{

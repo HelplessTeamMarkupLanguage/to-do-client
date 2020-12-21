@@ -19,7 +19,7 @@ const RegistrationPage = React.lazy(() => {
 function App() {
   const token = localStorage.getItem('token');
 
-  let routes = (
+  const routes = (
     <Switch>
       <ProtectedRoute path="/todos" exact component={ToDoList} token={token} />
       <Route path="/registration" exact component={RegistrationPage} />
@@ -27,17 +27,7 @@ function App() {
       {token !== null && token !== '' ? <Redirect to="/todos" /> : <Redirect to="/login" />}
     </Switch>
   );
-  return (
-    <Suspense
-      fallback={
-        <div>
-          <LoadingSpinner text="Just A Second" />
-        </div>
-      }
-    >
-      {routes}
-    </Suspense>
-  );
+  return <Suspense fallback={<LoadingSpinner text="Just A Second" />}>{routes}</Suspense>;
 }
 
 export default withRouter(App);
