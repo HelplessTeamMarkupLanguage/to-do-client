@@ -97,7 +97,6 @@ const registrationPage = (props) => {
     await axios
       .post('/user/signin', { username, password })
       .then((res) => {
-        console.log(res);
         setSneckBarMessage('Successful Registration');
         setSnackBarOpen(true);
         setTimeout(() => {

@@ -56,6 +56,7 @@ const toDoCard = (props) => {
   const [isFinished, setIsFinished] = useState(props.isFinished);
   let date = new Date(props.date);
   date = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
+
   const classes = toDoCardStyle({ isFinished });
   return (
     <Card classes={{ root: classes.card }}>
