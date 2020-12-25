@@ -48,6 +48,13 @@ const theme = createMuiTheme({
         boxSizing: 'border-box',
       },
     },
+    MuiDrawer: {
+      paper: {
+        background: '#274e6c',
+        padding: 16,
+        height: '100vh',
+      },
+    },
   },
 });
 
