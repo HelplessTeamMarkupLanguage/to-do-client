@@ -46,11 +46,7 @@ const ToDoList = (props) => {
 
   const fetchToDoList = async () => {
     await axios
-      .get('/todo', {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      })
+      .get('/todo')
       .then((res) => {
         setTodoList(res.data);
         setIsLoading(false);
@@ -67,11 +63,7 @@ const ToDoList = (props) => {
   const handleDeleteToDo = (id) => {
     setIsLoading(true);
     axios
-      .delete('/todo/' + id, {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      })
+      .delete('/todo/' + id)
       .then(() => {
         setIsChanged(!isChanged);
       })
@@ -83,11 +75,7 @@ const ToDoList = (props) => {
       isFinished: !isFinished,
     };
     axios
-      .put('/todo/' + id, toDo, {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      })
+      .put('/todo/' + id, toDo)
       .then((toDoList.find((todo) => todo._id === id).isFinished = !isFinished))
       .catch((error) => console.log('valami hiba', error));
   };
@@ -99,11 +87,7 @@ const ToDoList = (props) => {
       text: toDoMessage,
     };
     axios
-      .post('/todo', toDo, {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      })
+      .post('/todo', toDo)
       .then(() => {
         handleCloseDialog();
         setIsChanged(!isChanged);
