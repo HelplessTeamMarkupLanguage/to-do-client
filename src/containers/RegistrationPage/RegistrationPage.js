@@ -3,6 +3,7 @@ import axios from '../../axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Card, makeStyles, Snackbar, TextField } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 
 const registrationStyle = makeStyles((theme) => ({
   header: {
@@ -33,7 +34,7 @@ const registrationStyle = makeStyles((theme) => ({
   buttonHolder: {
     marginTop: 20,
     display: 'flex',
-    justifyContent: 'end',
+    justifyContent: 'flex-end',
     width: '100%',
   },
   form: {
@@ -41,7 +42,8 @@ const registrationStyle = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     '& .MuiButtonBase-root': {
-      width: '20%',
+      width: '25%',
+      minWidth: 80,
       [theme.breakpoints.down('xs')]: {
         width: '30%',
       },
@@ -49,11 +51,24 @@ const registrationStyle = makeStyles((theme) => ({
   },
   resetButton: {
     marginRight: theme.spacing(2),
-    border: '1px solid #274e6c',
-    color: '#274e6c',
   },
   submitButton: {
     color: 'white',
+  },
+  loginLink: {
+    width: '100%',
+    position: 'static',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 50,
+    color: '#274e6c',
+    '& a': {
+      color: '#de7a22',
+      textDecoration: 'none',
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
+    },
   },
 }));
 
@@ -68,10 +83,6 @@ const registrationPage = (props) => {
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [snackBarMessage, setSneckBarMessage] = useState('');
 
-  /* const onSubmit = async (username, password) => {
-   
-  }; */
-
   const handleResetAllInputFields = () => {
     setUsername('');
     setPassword('');
@@ -83,13 +94,14 @@ const registrationPage = (props) => {
   const onSubmit = async (data) => {
     const username = data.username;
     const password = data.password;
-
     await axios
       .post('/user/signin', { username, password })
       .then((res) => {
         setSneckBarMessage('Successful Registration');
         setSnackBarOpen(true);
-        handleResetAllInputFields();
+        setTimeout(() => {
+          props.history.push('/login');
+        }, 1500);
       })
       .catch((err) => {
         setSneckBarMessage('Registration Failed');
@@ -107,7 +119,7 @@ const registrationPage = (props) => {
             className={classes.textField}
             name="username"
             label="Username *"
-            value={username}
+            defaultValue={username}
             onChange={(event) => setUsername(event.target.value)}
             inputRef={register({
               required: 'Username required',
@@ -122,7 +134,7 @@ const registrationPage = (props) => {
             name="password"
             label="Password *"
             type="password"
-            value={password}
+            defaultValue={password}
             onChange={(event) => setPassword(event.target.value)}
             inputRef={register({
               required: 'Password required',
@@ -137,7 +149,7 @@ const registrationPage = (props) => {
             name="password_repeat"
             label="Repeat Password *"
             type="password"
-            value={passwordRepeat}
+            defaultValue={passwordRepeat}
             onChange={(event) => setPasswordRepeat(event.target.value)}
             inputRef={register({
               required: 'Password required',
@@ -147,7 +159,12 @@ const registrationPage = (props) => {
             helperText={errors.password_repeat && errors.password_repeat.message}
           />
           <div className={classes.buttonHolder}>
-            <Button className={classes.resetButton} onClick={handleResetAllInputFields}>
+            <Button
+              variant="outlined"
+              color="primary"
+              className={classes.resetButton}
+              onClick={handleResetAllInputFields}
+            >
               Reset
             </Button>
             <Button
@@ -161,6 +178,9 @@ const registrationPage = (props) => {
             </Button>
           </div>
         </form>
+        <h4 className={classes.loginLink}>
+          Changed your mind? <NavLink to="/login">Back to Login</NavLink>
+        </h4>
       </Card>
       <Snackbar
         anchorOrigin={{
@@ -168,8 +188,10 @@ const registrationPage = (props) => {
           horizontal: 'center',
         }}
         open={snackBarOpen}
-        autoHideDuration={3000}
-        onClose={() => setSnackBarOpen(false)}
+        autoHideDuration={1500}
+        onClose={() => {
+          setSnackBarOpen(false);
+        }}
         message={snackBarMessage}
       />
     </>
