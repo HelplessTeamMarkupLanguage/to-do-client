@@ -38,6 +38,7 @@ const ToDoList = (props) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [toDoMessage, setToDoMessage] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const token = localStorage.getItem('token');
   let toDos;
 
   //ez hack majd kitalálok valamit ne így keljen mert undorító megoldás, lehet valami rxjs megoldás lesz belőle
@@ -45,16 +46,17 @@ const ToDoList = (props) => {
 
   const fetchToDoList = async () => {
     await axios
-      .get('/todo')
+      .get('/todo', {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      })
       .then((res) => {
-        console.log(res.data);
         setTodoList(res.data);
         setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);
-        console.log('asd');
-        console.log('asdasd');
       });
   };
 
@@ -65,7 +67,11 @@ const ToDoList = (props) => {
   const handleDeleteToDo = (id) => {
     setIsLoading(true);
     axios
-      .delete('/todo/' + id)
+      .delete('/todo/' + id, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      })
       .then(() => {
         setIsChanged(!isChanged);
       })
@@ -73,25 +79,31 @@ const ToDoList = (props) => {
   };
 
   const handleFinishToDo = (id, isFinished) => {
-    console.log(toDoList);
     const toDo = {
       isFinished: !isFinished,
     };
     axios
-      .put('/todo/' + id, toDo)
+      .put('/todo/' + id, toDo, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      })
       .then((toDoList.find((todo) => todo._id === id).isFinished = !isFinished))
       .catch((error) => console.log('valami hiba', error));
   };
 
   const handleAddToDo = () => {
-    console.log(selectedDate);
     const toDo = {
       date: selectedDate ? selectedDate : new Date(),
       isFinished: false,
       text: toDoMessage,
     };
     axios
-      .post('/todo', toDo)
+      .post('/todo', toDo, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      })
       .then(() => {
         handleCloseDialog();
         setIsChanged(!isChanged);
@@ -131,6 +143,8 @@ const ToDoList = (props) => {
       <ToDoCard
         key={todo._id}
         text={todo.message}
+        isFinished={todo.isFinished}
+        date={todo.date}
         handleDeleteToDo={() => handleDeleteToDo(todo._id)}
         handleFinishToDo={() => handleFinishToDo(todo._id, todo.isFinished)}
       />
