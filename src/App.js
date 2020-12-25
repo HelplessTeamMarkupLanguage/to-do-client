@@ -3,6 +3,7 @@ import React from 'react';
 import { Suspense } from 'react';
 import ProtectedRoute from './hoc/ProtectedRouter';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+import Layout from './hoc/Layout';
 
 const ToDoList = React.lazy(() => {
   return import('./containers/ToDoList/ToDoList');
@@ -19,15 +20,27 @@ const RegistrationPage = React.lazy(() => {
 function App() {
   const token = localStorage.getItem('token');
 
-  const routes = (
-    <Switch>
-      <ProtectedRoute path="/todos" exact component={ToDoList} token={token} />
-      <Route path="/registration" exact component={RegistrationPage} />
-      <Route path="/login" exact component={LoginPage} />
-      {token !== null && token !== '' ? <Redirect to="/todos" /> : <Redirect to="/login" />}
-    </Switch>
+  const authorizationRoutes = (
+    <Suspense fallback={<LoadingSpinner text="Just A Second" />}>
+      <Switch>
+        <Route path="/registration" exact component={RegistrationPage} />{' '}
+        <Route path="/login" exact component={LoginPage} />
+        <Redirect to="/login" />
+      </Switch>
+    </Suspense>
   );
-  return <Suspense fallback={<LoadingSpinner text="Just A Second" />}>{routes}</Suspense>;
+
+  const authorizedRoutes = (
+    <Layout>
+      <Suspense fallback={<LoadingSpinner text="Just A Second" />}>
+        <Switch>
+          <ProtectedRoute path="/todos" exact component={ToDoList} token={token} />
+          <Redirect to="/todos" />
+        </Switch>
+      </Suspense>
+    </Layout>
+  );
+  return token ? authorizedRoutes : authorizationRoutes;
 }
 
 export default withRouter(App);
