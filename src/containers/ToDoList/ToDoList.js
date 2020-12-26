@@ -84,7 +84,7 @@ const ToDoList = (props) => {
     const toDo = {
       date: selectedDate ? selectedDate : new Date(),
       isFinished: false,
-      text: toDoMessage,
+      message: toDoMessage,
     };
     axios
       .post('/todo', toDo)
@@ -126,7 +126,7 @@ const ToDoList = (props) => {
     toDos = toDoList.map((todo) => (
       <ToDoCard
         key={todo._id}
-        text={todo.message}
+        message={todo.message}
         isFinished={todo.isFinished}
         date={todo.date}
         handleDeleteToDo={() => handleDeleteToDo(todo._id)}

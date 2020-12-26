@@ -61,7 +61,7 @@ const toDoCard = (props) => {
   return (
     <Card classes={{ root: classes.card }}>
       <div className={classes.mainSection}>
-        <h3>{props.text}</h3>
+        <h3>{props.message}</h3>
         <h4>Due date: {date}</h4>
       </div>
 
