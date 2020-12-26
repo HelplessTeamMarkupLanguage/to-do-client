@@ -9,6 +9,10 @@ const ToDoList = React.lazy(() => {
   return import('./containers/ToDoList/ToDoList');
 });
 
+const SettingsPage = React.lazy(() => {
+  return import('./containers/SettingsPage/SettingsPage');
+});
+
 const LoginPage = React.lazy(() => {
   return import('./containers/LoginPage/LoginPage');
 });
@@ -35,6 +39,7 @@ function App() {
       <Suspense fallback={<LoadingSpinner text="Just A Second" />}>
         <Switch>
           <ProtectedRoute path="/todos" exact component={ToDoList} token={token} />
+          <ProtectedRoute path="/settings" exact component={SettingsPage} token={token} />
           <Redirect to="/todos" />
         </Switch>
       </Suspense>
