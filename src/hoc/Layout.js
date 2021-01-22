@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Drawer, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
@@ -19,7 +18,7 @@ const layoutStyle = makeStyles((theme) => ({
   },
 }));
 
-const layout = (props) => {
+const Layout = (props) => {
   const [sideDrawerIsVisible, setSideDrawerIsVisible] = useState(false);
   const classes = layoutStyle();
 
@@ -56,4 +55,4 @@ const layout = (props) => {
   );
 };
 
-export default withRouter(layout);
+export default withRouter(Layout);

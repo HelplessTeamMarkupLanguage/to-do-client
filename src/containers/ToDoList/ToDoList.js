@@ -38,7 +38,6 @@ const ToDoList = (props) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [toDoMessage, setToDoMessage] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const token = localStorage.getItem('token');
   let toDos;
 
   //ez hack majd kitalálok valamit ne így keljen mert undorító megoldás, lehet valami rxjs megoldás lesz belőle

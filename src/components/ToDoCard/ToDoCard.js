@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Card, IconButton, makeStyles } from '@material-ui/core';
 import { Check, Delete, Replay } from '@material-ui/icons';
 import React, { useState } from 'react';
@@ -52,7 +51,7 @@ const toDoCardStyle = makeStyles((theme) => ({
   },
 }));
 
-const toDoCard = (props) => {
+const ToDoCard = (props) => {
   const [isFinished, setIsFinished] = useState(props.isFinished);
   let date = new Date(props.date);
   date = `${date.toLocaleString('default', { month: 'long' })} ${date.getDate()}, ${date.getFullYear()}`;
@@ -82,4 +81,4 @@ const toDoCard = (props) => {
   );
 };
 
-export default toDoCard;
+export default ToDoCard;

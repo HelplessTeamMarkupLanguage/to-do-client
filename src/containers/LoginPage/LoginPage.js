@@ -1,6 +1,6 @@
 import { Button, Card, makeStyles, Snackbar, TextField } from '@material-ui/core';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 import axios from '../../axios';
 
@@ -55,12 +55,22 @@ const loginStyle = makeStyles((theme) => ({
 }));
 
 export default function LoginPage(props) {
+  const { register, handleSubmit, errors, formState, clearErrors, reset } = useForm({
+    mode: 'onChange',
+  });
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const classes = loginStyle();
 
-  const submitLogin = async () => {
+  const handleClear = () => {
+    setUsername('');
+    setPassword('');
+    clearErrors();
+    reset();
+  };
+
+  const onSubmit = async () => {
     await axios
       .post('/user/login', { username, password })
       .then((res) => {
@@ -75,47 +85,58 @@ export default function LoginPage(props) {
 
   return (
     <>
-      <h1 className={classes.header}>Login</h1>
       <Card className={classes.card}>
-        <TextField
-          className={classes.textField}
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-          label="Username"
-        ></TextField>
-        <TextField
-          className={classes.textField}
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          label="Password"
-          type="password"
-        ></TextField>
-        <div className={classes.buttonHolder}>
-          <Button
-            className={classes.submitButton}
-            variant="contained"
-            color="primary"
-            onClick={() => submitLogin()}
-            disabled={username.length < 1 || password.length < 6}
-          >
-            Submit
-          </Button>
-          <Button
-            className={classes.clearButton}
-            variant="outlined"
-            color="primary"
-            onClick={() => {
-              setUsername('');
-              setPassword('');
-            }}
-          >
-            Clear
-          </Button>
-        </div>
+        <h1 className={classes.header}>Login</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            className={classes.textField}
+            defaultValue={username}
+            onChange={(event) => setUsername(event.target.value)}
+            inputRef={register({
+              required: 'Username required',
+              minLength: { value: 5, message: 'At least 5 characters' },
+              validate: true,
+            })}
+            error={!!errors.username}
+            helperText={errors.username && errors.username.message}
+            name="username"
+            label="Username *"
+          ></TextField>
+          <TextField
+            className={classes.textField}
+            defaultValue={password}
+            onChange={(event) => setPassword(event.target.value)}
+            label="Password *"
+            name="password"
+            type="password"
+            autoComplete="true"
+            inputRef={register({
+              required: 'Password required',
+              minLength: { value: 8, message: 'At least 8 characters' },
+              validate: true,
+            })}
+            error={!!errors.password}
+            helperText={errors.password && errors.password.message}
+          ></TextField>
+          <div className={classes.buttonHolder}>
+            <Button
+              className={classes.submitButton}
+              variant="contained"
+              color="primary"
+              type="submit"
+              disabled={!formState.isValid}
+            >
+              Submit
+            </Button>
+            <Button className={classes.clearButton} variant="outlined" color="primary" onClick={() => handleClear()}>
+              Clear
+            </Button>
+          </div>
 
-        <h4 className={classes.registration}>
-          New Member? <NavLink to="/registration">Register here</NavLink>
-        </h4>
+          <h4 className={classes.registration}>
+            New Member? <NavLink to="/registration">Register here</NavLink>
+          </h4>
+        </form>
       </Card>
       <Snackbar
         anchorOrigin={{

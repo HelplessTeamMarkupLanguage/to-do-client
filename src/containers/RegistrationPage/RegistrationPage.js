@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import axios from '../../axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -72,7 +71,7 @@ const registrationStyle = makeStyles((theme) => ({
   },
 }));
 
-const registrationPage = (props) => {
+const RegistrationPage = (props) => {
   const { register, handleSubmit, errors, formState, clearErrors, reset } = useForm({
     mode: 'onChange',
   });
@@ -198,4 +197,4 @@ const registrationPage = (props) => {
   );
 };
 
-export default registrationPage;
+export default RegistrationPage;
