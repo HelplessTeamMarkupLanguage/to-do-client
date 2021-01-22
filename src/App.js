@@ -37,11 +37,12 @@ function App() {
   const authorizedRoutes = (
     <Layout>
       <Suspense fallback={<LoadingSpinner text="Just A Second" />}>
-        <Switch>
+        <LoadingSpinner text="Just A Second" />
+        {/*   <Switch>
           <ProtectedRoute path="/todos" exact component={ToDoList} token={token} />
           <ProtectedRoute path="/settings" exact component={SettingsPage} token={token} />
           <Redirect to="/todos" />
-        </Switch>
+        </Switch> */}
       </Suspense>
     </Layout>
   );
