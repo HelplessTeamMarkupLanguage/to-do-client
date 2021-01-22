@@ -43,10 +43,10 @@ const toolbar = (props) => {
 
   return (
     <header className={classes.toolbar}>
+      <h2>HelplessToDo</h2>
       <Icon className={classes.icon} onClick={props.drawerToggleClicked}>
         menu
       </Icon>
-      <h2>HelplessToDo</h2>
       <nav className={classes.nav}>
         <NavigationItem onClick={props.onLogout} icon="exit_to_app">
           Logout
