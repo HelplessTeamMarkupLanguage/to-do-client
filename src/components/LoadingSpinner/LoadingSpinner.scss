@@ -3,6 +3,7 @@
   padding: 10px;
   box-sizing: border-box;
   border-radius: 5px;
+  margin: auto;
 
   h1 {
     color: #eeecdf;
@@ -80,16 +81,20 @@
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .spinner-holder {
+    width: 90%;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .spinner-holder {
     width: 60%;
-    margin: auto;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .spinner-holder {
     width: 30%;
-    margin: auto;
   }
 }

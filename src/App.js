@@ -25,7 +25,7 @@ function App() {
   const token = localStorage.getItem('token');
 
   const authorizationRoutes = (
-    <Suspense fallback={<LoadingSpinner text="Just A Second" />}>
+    <Suspense fallback={<LoadingSpinner marginTop={150} text="Just A Second" />}>
       <Switch>
         <Route path="/registration" exact component={RegistrationPage} />{' '}
         <Route path="/login" exact component={LoginPage} />
@@ -36,7 +36,7 @@ function App() {
 
   const authorizedRoutes = (
     <Layout>
-      <Suspense fallback={<LoadingSpinner text="Just A Second" />}>
+      <Suspense fallback={<LoadingSpinner marginTop={150} text="Just A Second" />}>
         <Switch>
           <ProtectedRoute path="/todos" exact component={ToDoList} token={token} />
           <ProtectedRoute path="/settings" exact component={SettingsPage} token={token} />
