@@ -1,5 +1,5 @@
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Suspense } from 'react';
 import ProtectedRoute from './hoc/ProtectedRouter';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';

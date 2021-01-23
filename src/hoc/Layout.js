@@ -21,6 +21,15 @@ const layoutStyle = makeStyles((theme) => ({
 const Layout = (props) => {
   const [sideDrawerIsVisible, setSideDrawerIsVisible] = useState(false);
   const classes = layoutStyle();
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleDropdownMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleDropdownMenuClose = () => {
+    setAnchorEl(null);
+  };
 
   const sideDrawerToggleHandler = () => {
     setSideDrawerIsVisible(!sideDrawerIsVisible);
@@ -31,8 +40,30 @@ const Layout = (props) => {
     props.history.push('/login');
   };
 
+  const handleNavigation = (destination) => {
+    props.history.push(destination);
+  };
+
   const list = (
     <div>
+      <NavigationItem
+        icon="list_alt"
+        onClick={() => {
+          handleNavigation('/todos');
+          sideDrawerToggleHandler();
+        }}
+      >
+        Todos
+      </NavigationItem>
+      <NavigationItem
+        icon="settings"
+        onClick={() => {
+          handleNavigation('/settings');
+          sideDrawerToggleHandler();
+        }}
+      >
+        Settings
+      </NavigationItem>
       <NavigationItem onClick={handleLogout} icon="exit_to_app">
         Logout
       </NavigationItem>
@@ -41,7 +72,14 @@ const Layout = (props) => {
 
   return (
     <>
-      <Toolbar onLogout={handleLogout} drawerToggleClicked={sideDrawerToggleHandler} />
+      <Toolbar
+        anchorEl={anchorEl}
+        handleDropdownMenuClose={handleDropdownMenuClose}
+        handleDropdownMenuOpen={handleDropdownMenuOpen}
+        onLogout={handleLogout}
+        drawerToggleClicked={sideDrawerToggleHandler}
+        handleNavigation={handleNavigation}
+      />
       <Drawer
         color="primary"
         className={classes.sideDrawer}

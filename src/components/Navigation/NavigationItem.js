@@ -7,10 +7,10 @@ const navigationItemStyle = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     height: '100%',
-    marginLeft: 10,
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     cursor: 'pointer',
+    maxHeight: 70,
     '&:hover': {
       backgroundColor: '#79a9ce',
     },
@@ -24,7 +24,7 @@ const navigationItemStyle = makeStyles((theme) => ({
     },
   },
   icon: {
-    marginLeft: 10,
+    marginRight: 10,
     color: '#eeecdf',
     fontSize: 18,
     [theme.breakpoints.down('md')]: {
@@ -33,15 +33,15 @@ const navigationItemStyle = makeStyles((theme) => ({
   },
 }));
 
-const navigationItem = (props) => {
+const NavigationItem = (props) => {
   const classes = navigationItemStyle();
 
   return (
     <div className={classes.navigationItem} onClick={props.onClick}>
-      <h3>{props.children}</h3>
       {props.icon && <Icon className={classes.icon}>{props.icon}</Icon>}
+      <h3>{props.children}</h3>
     </div>
   );
 };
 
-export default navigationItem;
+export default NavigationItem;

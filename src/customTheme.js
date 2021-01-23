@@ -55,6 +55,18 @@ const theme = createMuiTheme({
         height: '100vh',
       },
     },
+    MuiMenu: {
+      paper: {
+        marginTop: 10,
+        backgroundColor: '#274e6c',
+        width: 150,
+
+        padding: 0,
+        '& .MuiList-root': {
+          padding: 0,
+        },
+      },
+    },
   },
 });
 

@@ -1,5 +1,7 @@
 import { Icon, makeStyles } from '@material-ui/core';
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import AvatarDropdown from './AvatarDropdown';
 import NavigationItem from './NavigationItem';
 
 const toolbarStyle = makeStyles((theme) => ({
@@ -19,10 +21,12 @@ const toolbarStyle = makeStyles((theme) => ({
       margin: 0,
       color: '#eeecdf',
       alignSelf: 'center',
+      cursor: 'pointer',
     },
   },
   nav: {
     display: 'flex',
+    alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
@@ -43,17 +47,22 @@ const toolbar = (props) => {
 
   return (
     <header className={classes.toolbar}>
-      <h2>HelplessToDo</h2>
+      <h2 onClick={() => props.handleNavigation('/todos')}>HelplessToDo</h2>
       <Icon className={classes.icon} onClick={props.drawerToggleClicked}>
         menu
       </Icon>
       <nav className={classes.nav}>
-        <NavigationItem onClick={props.onLogout} icon="exit_to_app">
-          Logout
-        </NavigationItem>
+        <NavigationItem onClick={() => props.handleNavigation('/todos')}>ToDos</NavigationItem>
+        <AvatarDropdown
+          handleNavigation={props.handleNavigation}
+          anchorEl={props.anchorEl}
+          handleDropdownMenuClose={props.handleDropdownMenuClose}
+          handleDropdownMenuOpen={props.handleDropdownMenuOpen}
+          onLogout={props.onLogout}
+        />
       </nav>
     </header>
   );
 };
 
-export default toolbar;
+export default withRouter(toolbar);
