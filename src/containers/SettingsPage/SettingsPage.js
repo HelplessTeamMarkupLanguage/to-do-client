@@ -13,6 +13,10 @@ const registrationStyle = makeStyles((theme) => ({
     maxWidth: 500,
     margin: theme.spacing(2),
     [theme.breakpoints.up(550)]: { margin: 'auto', marginTop: theme.spacing(2) },
+    '& h3': {
+      margin: '8px 16px 0px 16px',
+      color: '#274e6c',
+    },
   },
   textField: {
     width: '90%',
@@ -52,6 +56,7 @@ export default function SettingsPage(props) {
     <>
       <h1 className={classes.header}>Settings</h1>
       <Card className={classes.card}>
+        <h3>Delete Account</h3>
         <TextField
           className={classes.textField}
           type="password"
